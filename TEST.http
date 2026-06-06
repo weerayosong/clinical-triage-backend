@@ -1,0 +1,60 @@
+### ==============================================================
+### Clinical Triage - API Test Suite (REST Client)
+### ==============================================================
+@baseUrl = http://localhost:8080/api/v1/patients
+
+
+### 1. Register a new patient (Urgency: EMERGENCY)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Marcus Johnson",
+    "symptoms": "Severe chest pain and shortness of breath",
+    "urgency": "EMERGENCY"
+}
+
+### --------------------------------------------------------------
+
+### 2. Register a new patient (Urgency: URGENT)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Sarah Williams",
+    "symptoms": "High fever (39.5C) and dizziness",
+    "urgency": "URGENT"
+}
+
+### --------------------------------------------------------------
+
+### 3. Register a new patient (Urgency: NORMAL)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "David Chen",
+    "symptoms": "Sprained ankle, pain when walking",
+    "urgency": "NORMAL"
+}
+
+### --------------------------------------------------------------
+
+### 4. Get all patients in the triage queue
+### (Expected: Sorted by Status then by Registration Time)
+GET {{baseUrl}}
+
+### --------------------------------------------------------------
+
+### 5. Update patient status to 'IN_TREATMENT'
+PATCH {{baseUrl}}/1/status?status=IN_TREATMENT
+
+### --------------------------------------------------------------
+
+### 6. Update patient status to 'DISCHARGED'
+PATCH {{baseUrl}}/1/status?status=DISCHARGED
+
+### --------------------------------------------------------------
+
+### 7. Update patient status to 'WAITING'
+PATCH {{baseUrl}}/1/status?status=WAITING
