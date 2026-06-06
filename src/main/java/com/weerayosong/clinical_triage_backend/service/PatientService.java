@@ -34,4 +34,9 @@ public class PatientService {
         patient.setStatus(newStatus);
         return patientRepository.save(patient);
     }
+
+    // Delete
+    public void deletePatient(@NonNull Long id) {
+    patientRepository.deleteById(id);
+}
 }
