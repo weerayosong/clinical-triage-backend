@@ -1,73 +1,83 @@
 # Clinical Triage - Backend Repository
 
-Frontend Repository: [Frontend](https://github.com/weerayosong/clinical-triage-frontend)
+Frontend Repository: [Frontend](https://github.com/weerayosong/clinical-triage-frontend)  
+Live Preview: [Demo](https://clinical-triage-frontend.vercel.app/)
 
-โปรเจกต์ทดลองสร้างระบบจัดการคิวและคัดกรองผู้ป่วยเบื้องต้น (Concept Application) ที่ออกแบบโดยคำนึงถึงความยืดหยุ่นในการแสดงผลแบบ Responsive และโครงสร้างระบบแบบ Enterprise
+โปรเจกต์ต้นแบบแอปพลิเคชัน (Concept Application) สำหรับระบบจัดการคิวและคัดกรองผู้ป่วยเบื้องต้น ที่ได้รับการออกแบบโดยให้ความสำคัญกับความยืดหยุ่นในการแสดงผล (Responsive Design) และโครงสร้างระบบสถาปัตยกรรมระดับองค์กร (Enterprise Architecture)
 
-![clinical-triage-img](https://github.com/weerayosong/weerayosong.github.io/blob/main/images/gif/proj5.gif?raw=true)
+![clinical-triage-img](https://github.com/weerayosong/weerayosong.github.io/blob/main/images/gif/proj5b.gif?raw=true)
 
 ## วัตถุประสงค์ของโปรเจกต์ (Project Objective)
 
-โปรเจกต์นี้เริ่มต้นขึ้นจากความตั้งใจที่จะท้าทายตัวเองในช่วงสุดสัปดาห์ เพื่อพาตัวเองออกจาก Comfort Zone และทดลองสัมผัสกับ Tech Stack ระดับองค์กรที่ผมยังไม่เคยมีประสบการณ์มาก่อน นั่นคือ **Angular** และ **Java Spring Boot**
+แอปพลิเคชันนี้ถูกพัฒนาขึ้นเพื่อเป็นต้นแบบแนวคิด (Proof of Concept) ในการศึกษาและประยุกต์ใช้งานเทคโนโลยีระดับองค์กร โดยเฉพาะการใช้ Java Spring Bootโครงสร้างของระบบได้รับการพัฒนาผ่านแนวทางการเรียนรู้แบบปฏิบัติจริง (Top-down Approach) เพื่อทำความเข้าใจสถาปัตยกรรมฝั่งเซิร์ฟเวอร์ การทำงานของตรรกะทางธุรกิจ (Business Logic) การตรวจสอบความถูกต้องของข้อมูล (Validation) และการจัดการการเปลี่ยนสถานะของระบบ (State Transition) ให้มีประสิทธิภาพและรัดกุม
 
-ในฐานะมือใหม่ที่เพิ่งเริ่มต้นกับ Stack นี้ ผมตระหนักดีถึงความซับซ้อนและ Learning Curve ที่ค่อนข้างสูง ทั้งในเรื่องของ Strict Typing, โครงสร้างแบบ Reactive และสถาปัตยกรรมหลังบ้านที่รัดกุม ผมจึงเลือกใช้วิธีการเรียนรู้แบบลงมือทำ Top-down Approach โดยมี AI เข้ามาเป็นผู้ช่วย เพื่อช่วยอธิบายคอนเซปต์ แนะนำแนวทางปฏิบัติที่ดี (Best Practices) และช่วยเร่งทำความเข้าใจโครงสร้างที่ซับซ้อนให้เห็นภาพชัดเจนขึ้น
-
-แอปพลิเคชัน Clinical Triage ตัวนี้ จึงถูกสร้างขึ้นมาในฐานะ "ตัวต้นแบบเพื่อการศึกษา" ที่มุ่งเน้นทำความเข้าใจการไหลของข้อมูล และการเปลี่ยนสถานะของ State Transition มากกว่าความสมบูรณ์แบบของระบบทั้งหมด ผมยอมรับอย่างตรงไปตรงมาว่ายังคงมีกลไกเชิงลึกอีกมากมายใน Framework เหล่านี้ที่ผมยังต้องศึกษาเพิ่มเติม แต่โปรเจกต์เล็กๆ นี้ก็ถือเป็นก้าวแรกที่สำคัญที่จะช่วยให้ผมได้พัฒนาตัวเองขึ้นต่อไป
-
-## สถาปัตยกรรมระบบ (System Architecture)
+## การออกแบบ & สถาปัตยกรรมระบบ (Architecture & System Design)
 
 [Architecture & System Design Documentation](https://admirable-malasada-3580eb.netlify.app)
 
-ระบบนี้ทำงานอยู่บนพื้นฐานของ **Client-Server Architecture** โดยแยกส่วนการแสดงผล User Interface ออกจากตรรกะทางธุรกิจ Business Logic และการจัดการข้อมูลอย่างชัดเจน:
+## สถาปัตยกรรมระบบฝั่งเซิร์ฟเวอร์ (Backend Architecture)
 
-- **Presentation Layer (ฝั่งหน้าบ้าน - Client):** พัฒนาเป็น Single Page Application (SPA) ด้วย Angular ทำหน้าที่จัดการ UI, การรับส่งข้อมูลจากผู้ใช้, และทำงานแบบ Responsive โดยเชื่อมต่อกับส่วนหลังบ้านผ่าน HTTP RESTful APIs เท่านั้น
-- **Application Layer (ฝั่งหลังบ้าน - Server):** ใช้ Java Spring Boot ทำหน้าที่เป็นหัวใจหลักในการประมวลผล (Business Logic) ตรวจสอบความถูกต้องของข้อมูล (Validation) และเตรียม REST Endpoints ที่ปลอดภัยให้หน้าบ้านเรียกใช้งาน
-- **Data Access Layer:** ใช้ Spring Data JPA (Hibernate) เป็นตัวกลางในการทำ ORM (Object-Relational Mapping) เพื่อแปลง Object ในภาษา Java (Entity) ให้ผูกกับตารางในฐานข้อมูล ช่วยลดความซับซ้อนของการเขียน SQL โดยตรง
-- **Data Persistence (ฐานข้อมูล):** จัดเก็บข้อมูลผู้ป่วย ระดับความเร่งด่วน และสถานะคิวลงใน PostgreSQL
+ระบบปฏิบัติการบนพื้นฐานของ **Client-Server Architecture** โดยแอปพลิเคชันฝั่งหลังบ้าน (Server) ทำหน้าที่เป็นหัวใจหลักในการประมวลผลและเตรียม RESTful APIs ที่ปลอดภัย
 
-## รูปแบบการออกแบบซอฟต์แวร์ (Software Design Patterns)
+การออกแบบซอฟต์แวร์จัดทำในรูปแบบ **N-Tier Architecture** (Separation of Concerns) เพื่อให้โค้ดดูแลรักษาง่ายและพร้อมรองรับการขยายตัวในอนาคต:
 
-### Backend (Spring Boot: โครงสร้างแบบ N-Tier Architecture)
+- **Controller Layer:** ด่านหน้าสำหรับรับ HTTP Requests, อ่านค่าพารามิเตอร์, และส่ง Response กลับพร้อม HTTP Status Code ที่เหมาะสม
+- **Service Layer:** ชั้นที่ควบคุมตรรกะของแอปพลิเคชัน (Business Logic) ครอบคลุมถึงกฎและเงื่อนไขการย้ายสถานะคิวผู้ป่วย
+- **Repository Layer (Data Access):** รับผิดชอบการสื่อสารกับฐานข้อมูล โดยอาศัย Spring Data JPA (Hibernate) เป็นกลไกในการทำ ORM (Object-Relational Mapping) เพื่อลดความซับซ้อนของการเขียนชุดคำสั่ง SQL
+- **Entity Model:** คลาสโครงสร้างภาษา Java ที่เป็นตัวแทน (POJOs) ของตารางข้อมูลในฐานข้อมูล
 
-โครงสร้างหลังบ้านถูกแบ่งเลเยอร์อย่างเป็นระเบียบ (Separation of Concerns) เพื่อให้โค้ดดูแลรักษาง่ายและพร้อมสำหรับการขยายตัว:
-
-1. **Controller Layer:** เป็นด่านหน้าสำหรับรับ HTTP Requests จากหน้าบ้าน, อ่านค่าพารามิเตอร์, และส่ง Response กลับไปพร้อม HTTP Status Code ที่เหมาะสม
-2. **Service Layer:** ชั้นที่บรรจุตรรกะของแอปพลิเคชัน (Business Logic) ทั้งหมด เช่น กฎการย้ายสถานะคิวผู้ป่วย
-3. **Repository Layer:** ส่วนที่ทำหน้าที่สื่อสารกับฐานข้อมูลโดยตรง
-4. **Entity Model:** คลาส Java ที่เป็นตัวแทน (POJOs) ของโครงสร้างตารางข้อมูล
-
-### Frontend (Angular: โครงสร้างแบบ Component-Based Architecture)
-
-1. **Modular UI:** แบ่งหน้าจอเป็น Component ย่อยๆ ที่ทำงานอิสระต่อกัน (เช่น ส่วนฟอร์มเพิ่มข้อมูล และส่วนแสดงผลตาราง)
-2. **Service-Oriented Data Fetching:** สร้าง Angular Service แยกออกมาเพื่อรับผิดชอบการยิง API ผ่าน `HttpClient` โดยเฉพาะ ทำให้ Component หน้าจอไม่ต้องแบกรับภาระการเชื่อมต่อข้อมูล
-3. **Responsive & Adaptive Layout:** ใช้ Tailwind CSS v.4 ควบคุมเลย์เอาต์ โดยออกแบบให้หน้าจอเดสก์ท็อปแสดงผลเป็นบอร์ด Kanban แบบ 3 คอลัมน์ และปรับเป็นรูปแบบ Accordion (เปิด-ปิดทีละสถานะ) โดยอัตโนมัติเมื่อใช้งานบนหน้าจอมือถือ เพื่อประสบการณ์การใช้งานที่ลื่นไหลที่สุด
+---
 
 ## เครื่องมือและเทคโนโลยี (Technology Stack)
 
-**Frontend Environment:**
+**Core System & Frameworks:**
 
-- Angular (TypeScript)
-- RxJS (Reactive Extensions for JavaScript)
-- Tailwind CSS v.4
-- HTML5 / Vanilla JS (Mockup UI)
-
-**Backend Environment:**
-
-- Java (JDK 17+)
+- Java (JDK 21)
 - Spring Boot 3.x
 - Spring Web (RESTful APIs)
-- Spring Data JPA
-- PostgreSQL Driver
 
-**Infrastructure & Tooling:**
+**Database & Persistence:**
 
 - PostgreSQL
+- PostgreSQL Driver
+- Spring Data JPA
+
+**Infrastructure & Version Control:**
+
 - Maven (Dependency Management)
-- Node.js & npm
-- Git (Version Control)
 
-## ฟีเจอร์หลัก (Key Features)
+---
 
-- **Triage Registration:** ระบบลงทะเบียนด่วนสำหรับคัดกรองผู้ป่วย โดยระบุอาการและระดับความเร่งด่วน (Normal, Urgent, Emergency)
-- **Dynamic Queue Board:** กระดานแสดงผลแบบ Kanban ที่อัปเดตสถานะของผู้ป่วยใน 3 ระยะ: รอรับการรักษา (Waiting), กำลังรักษา (In Treatment), และจำหน่ายกลับ (Discharged)
-- **Adaptive Mobile View:** อินเทอร์เฟซที่ปรับตัวเองให้เหมาะสมกับขนาดหน้าจอ ช่วยให้เจ้าหน้าที่ใช้งานผ่านอุปกรณ์พกพาได้อย่างสะดวก
+## การตั้งค่าและการติดตั้ง (Setup & Deployment)
+
+แอปพลิเคชันฝั่งเซิร์ฟเวอร์นี้ได้รับการปรับแต่งโครงสร้างเพื่อรองรับการ Deployment บนคลาวด์แพลตฟอร์มอย่าง **Railway** และใช้ฐานข้อมูล **PostgreSQL จาก Aiven** โดยมีแนวทางปฏิบัติที่ต้องเตรียมการดังนี้:
+
+### 1. การบริหารจัดการตัวแปรสภาพแวดล้อม (Environment Variables)
+
+เพื่อปฏิบัติตามมาตรฐานความปลอดภัย ข้อมูลประจำตัวสำหรับการเชื่อมต่อฐานข้อมูลทั้งหมด กำหนดผ่านระบบ Environment Variables:
+
+- ตั้งค่า `spring.datasource.url=${DB_URL}`
+- ตั้งค่า `spring.datasource.username=${DB_USERNAME}`
+- ตั้งค่า `spring.datasource.password=${DB_PASSWORD}`
+
+### 2. การอนุญาต Cross-Origin Resource Sharing (CORS)
+
+ระบบได้จัดเตรียมคลาส `CorsConfig` เพื่อดำเนินการกำหนดค่า Global CORS Configuration ซึ่งจะอนุญาตให้ Frontend Application (จาก Vercel หรือ Localhost) สามารถเรียกใช้งาน API Endpoints ได้อย่างสมบูรณ์แบบโดยไม่ถูกจำกัดสิทธิ์จากเบราว์เซอร์
+
+### 3. การควบคุมกระบวนการ Build บน Railway (Nixpacks)
+
+ในการนำโค้ดขึ้นสู่เซิร์ฟเวอร์ Railway จำเป็นต้องเพิ่มตัวแปรในส่วนของ Variables เพื่อควบคุมสภาวะแวดล้อม:
+
+- `NIXPACKS_JDK_VERSION`: กำหนดค่าเป็น `21` เพื่อบังคับให้ระบบคลาวด์ใช้ Java เวอร์ชันที่สอดคล้องกับการตั้งค่าใน `pom.xml` ป้องกันข้อผิดพลาด Compilation Error
+- `NIXPACKS_BUILD_CMD`: กำหนดค่าเป็น `./mvnw clean package -DskipTests` เพื่อข้ามกระบวนการ Unit Test ในระหว่างการ Build ลดปัญหาการเชื่อมต่อฐานข้อมูลขณะจัดเตรียม Image
+
+---
+
+## บันทึกการเปลี่ยนแปลง (Changelog)
+
+**[v1.1.0] - 2026-06-07**
+
+- **Added:** ผนวกคลาส `CorsConfig.java` ลงในระบบเพื่อจัดการนโยบาย CORS แบบเบ็ดเสร็จ รองรับการทำ End-to-End Integration กับ Web Application
+- **Added:** ประยุกต์ใช้ `@NonNull` Annotation ในส่วนกำหนดค่า เพื่อให้สอดคล้องกับมาตรฐานข้อบังคับเรื่อง Null-Safety ของ Spring Boot เวอร์ชันปัจจุบัน
+- **Security:** ปรับปรุงความปลอดภัยของไฟล์ `application.properties` โดยการแทนที่รหัสผ่านด้วยโครงสร้างตัวแปร
+- **Fixed:** แก้ไขความขัดแย้งของข้อกำหนดเวอร์ชัน Java (Compilation Error) โดยปรับแก้ตัวแปร `<java.version>` ในไฟล์ `pom.xml` จากเวอร์ชัน 25 เป็นเวอร์ชัน 21 เพื่อให้ทำงานสอดคล้องกับเสถียรภาพของคลาวด์เซิร์ฟเวอร์
